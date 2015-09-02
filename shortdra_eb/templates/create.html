@@ -100,7 +100,7 @@ a:active {
 			console.log(string);
 			var link = $("#url")[0].value;
 			console.log(url);
-			if ((text.length > 0) && (link.length > 0)) {
+			if ((text.length > 0) || (link.length > 0)) {
 				$.ajax({
 	                url : "/create/POST",
 	                type: "PUT",
