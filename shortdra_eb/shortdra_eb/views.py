@@ -9,6 +9,12 @@ from django.template.context_processors import csrf
 import urllib
 
 def root(request):
+	scheme = "http" if not request.is_secure() else "https"
+	path = request.get_full_path()
+	domain = request.META.get('HTTP_HOST') or request.META.get('SERVER_NAME')
+	pieces = domain.split('.')
+	if "shortdra" in pieces:
+		return creator(request)
 	return HttpResponseRedirect("http://hydras.slack.com")
 
 def dispatcher(request, string):
@@ -19,7 +25,7 @@ def dispatcher(request, string):
 	else:
 		redirect_url = link.get_url()
 	return HttpResponseRedirect(redirect_url)
-
+	
 @ensure_csrf_cookie
 def creator(request):
 	c = {}
