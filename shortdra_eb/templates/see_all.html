@@ -1,13 +1,64 @@
 <html>
+<body style="margin-top: 30px">
+	<div style="text-align:center;">
+		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>		
+		<h5><i>The URL shortener to simplify your life.</i><h5>
+		<ul>
+		  <li><a href="http://hydr.as/create">Home</a></li>
+		  <li><a href="http://hydr.as/see_all">See All</a></li>
+		</ul>
+	<div>
+	<br><br>
+	<div style="text-align:center;">
+		<table align="center" border="1" id="links">
+			<thead><th>String</th><th>URL</th></thead>
+			<tbody>
+				{% for value in links %}
+				<tr><td><a href="http://hydr.as/{{value.string}}">{{value.string}}</a></td><td><a href="{{value.url}}">{{value.url}}</a></td></tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-<table id="links">
-	<thead><th>String</th><th>URL</th></thead>
-	<tbody>
-		{% for value in links %}
-		<tr><td>{{value.string}}</td><td><a href="{{value.url}}">{{value.url}}</a></td></tr>
-		{% endfor %}
-	</tbody>
-</table>
+</body>
+</html>
+
+<style>
+
+body {
+	font-family: "Trebuchet MS";
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    padding: 5px;
+}
+
+a:link {
+    color: #006666
+}
+
+/* visited link */
+a:visited {
+    color: #006666
+}
+
+/* mouse over link */
+a:hover {
+    color: #006666
+}
+
+/* selected link */
+a:active {
+    color: #006666
+}
+
 
 </html>
 

@@ -1,15 +1,21 @@
 <html>
 <body style="margin-top: 30px">
 	<div style="text-align:center;">
-		<h3>Welcome to Shortdra.</h3>
+		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>
 		<h5><i>The URL shortener to simplify your life.</i><h5>
+		<ul>
+		  <li><a href="http://hydr.as/create">Home</a></li>
+		  <li><a href="http://hydr.as/see_all">See All</a></li>
+		</ul>
 	<div>
-
+	<br>
 	<div style="text-align:center;">
 		<input style="padding: 5px;" id="string" placeholder="string"></input><br>
 		<input style="padding: 5px;" id="url" placeholder="https://link.cxx"></input><br>
 		<button style="margin-top: 5px; padding: 5px;" id="create">Create</button>
+		<br>
 		<div style="padding: 5px; display:none;" id="success">Link successful!</div>
+		<div style="padding: 5px; display:none; color:red;" id="failure">Please enter some text in each box, silly!</div>
 	</div>
 
 </body>
@@ -20,6 +26,37 @@
 body {
 	font-family: "Trebuchet MS";
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    padding: 5px;
+}
+
+a:link {
+    color: #006666
+}
+
+/* visited link */
+a:visited {
+    color: #006666
+}
+
+/* mouse over link */
+a:hover {
+    color: #006666
+}
+
+/* selected link */
+a:active {
+    color: #006666
+}
+
 
 
 
@@ -63,21 +100,27 @@ body {
 			console.log(string);
 			var link = $("#url")[0].value;
 			console.log(url);
-			$.ajax({
-                url : "/create/POST",
-                type: "PUT",
-                data: {text: text, link: link},
-                success : function(json) {
-                    if (json === "Success!") {
-                    	$("#success").show();
-                    	$("#success").fadeOut(2000);
-                    }
-                },
-                error : function(xhr, errmsg, err) {
-                        console.log(errmsg, err, xhr);
-                    }
+			if ((text.length > 0) && (link.length > 0)) {
+				$.ajax({
+	                url : "/create/POST",
+	                type: "PUT",
+	                data: {text: text, link: link},
+	                success : function(json) {
+	                    if (json === "Success!") {
+	                    	$("#failure").hide();
+	                    	$("#success").show();
+	                    	$("#success").fadeOut(2000);
+	                    }
+	                },
+	                error : function(xhr, errmsg, err) {
+	                        console.log(errmsg, err, xhr);
+	                    }
 
-		});
+			});
+		} else {
+			$("#failure").fadeIn();
+			$("#success").hide();
+		}
 	});
 });
 </script>
