@@ -1,4 +1,7 @@
 # shortdra
 URL Shortener hosted on AWS Beanstalk
 
-Use at hydr.as/create
+shortdra.hydr.as
+
+[shortdra.hydr.as](shortdra.hydr.as)
+
