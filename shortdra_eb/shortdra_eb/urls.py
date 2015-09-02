@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^see_all/$', see_all),
     url(r'^create/$', creator),
     url(r'^create/POST/$', transact),
-    url(r'^(?P<string>\w+)/$', dispatcher),
+    url(r'^(?P<string>[\w\/+-@%_&!]+)/$', dispatcher),
 
 ]

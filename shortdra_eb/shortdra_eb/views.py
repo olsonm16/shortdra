@@ -28,9 +28,10 @@ def creator(request):
 
 def transact(request):
 	split = request.body.split("&")
-	text = split[0].split("=")[1]
+	raw_text = split[0].split("=")[1]
 	raw_url = split[1].split("=")[1]
 	url = urllib.unquote(raw_url).decode('utf8') 
+	text = urllib.unquote(raw_text).decode('utf8') 
 	if ("http://" not in url) and ("https://" not in url):
 		url = "http://" + url
 	try:
