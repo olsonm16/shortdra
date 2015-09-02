@@ -75,14 +75,6 @@ if 'RDS_DB_NAME' in os.environ:
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'shortdra',
-            'USER': 'mxolson',
-            'PASSWORD': 'thehydras',
-            'HOST': "aadf2tqarrt9mg.catieht1bp1u.us-west-2.rds.amazonaws.com",
-            'PORT': '3306'
-        }
     }
 
 # Internationalization
