@@ -4,7 +4,7 @@
 	<thead><th>String</th><th>URL</th></thead>
 	<tbody>
 		{% for value in links %}
-		<tr><td>{{value.string}}</td><td>{{value.url}}</td></tr>
+		<tr><td>{{value.string}}</td><td><a href="{{value.url}}">{{value.url}}</a></td></tr>
 		{% endfor %}
 	</tbody>
 </table>

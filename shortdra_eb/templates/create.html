@@ -1,13 +1,27 @@
 <html>
+<body>
+<h1 style="text-align:center;"> The Hydras <h1>
+<h3 style="text-align:center;">Welcome to Shordra.</h3>
 
-<input id="string">String</input>
-<input id="url">Url</input>
-<button id="create">Create</button>
+<div style="text-align:center;">
+<input style="padding: 5px;" id="string" placeholder="string"></input><br>
+<input style="padding: 5px;" id="url" placeholder="https://link.cxx"></input><br>
+<button style="margin-top: 5px; padding: 5px;" id="create">Create</button>
+<div style="padding: 5px; display:none;" id="success">Link successful!</div>
+</div>
 
-<div id="success" style="display:none;">Link successful!</div>
-
+</body>
 </html>
 
+<style>
+
+body {
+	font-family: "Trebuchet MS";
+}
+
+
+
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
