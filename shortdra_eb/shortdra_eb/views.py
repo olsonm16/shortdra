@@ -1,16 +1,21 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
+from models import ShortLink
+from django.shortcuts import render
 
 def root(request):
 	return HttpResponseRedirect("http://hydras.slack.com")
 
 def dispatcher(request, string):
-	urls = {'default':"http://apple.com", 
-			'awesome':"http://reddit.com",
-			'mail':"https://www.zoho.com/mail/login.html",
-			'mdeanoly':'http://mdeanoly.com',
-			'nicksyn':'http://nicksyn.com'
-			}
-	if string in urls:
-		return HttpResponseRedirect(urls[string])
+	if string == "create":
+		return render(request, "create.html")
+	try:
+		link = ShortLink.objects.get(string__exact=string)
+	except ObjectDoesNotExist:
+		redirect_url = "http://hydras.slack.com"
 	else:
-		return HttpResponseRedirect("http://www.google.com")
+		redirect_url = link.get_url()
+	return HttpResponseRedirect(redirect_url)
+
+def creator(request):
+	return render(request, "create.html")

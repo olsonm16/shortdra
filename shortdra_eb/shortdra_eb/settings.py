@@ -27,10 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 # Application definition
 
 INSTALLED_APPS = (
+    'shortdra_eb',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,21 +54,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'shortdra_eb.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+TEMPLATES = []
 
 WSGI_APPLICATION = 'shortdra_eb.wsgi.application'
 
@@ -83,6 +71,17 @@ if 'RDS_DB_NAME' in os.environ:
             'PASSWORD': os.environ['RDS_PASSWORD'],
             'HOST': os.environ['RDS_HOSTNAME'],
             'PORT': os.environ['RDS_PORT'],
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'shortdra',
+            'USER': 'mxolson',
+            'PASSWORD': 'thehydras',
+            'HOST': "aadf2tqarrt9mg.catieht1bp1u.us-west-2.rds.amazonaws.com",
+            'PORT': '3306'
         }
     }
 
