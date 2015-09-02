@@ -44,5 +44,10 @@ def transact(request):
 
 	return HttpResponse("Success!")
 
+@ensure_csrf_cookie
 def see_all(request):
-	return HttpResponse(str(ShortLink.objects.all()))
+	c = {}
+	c['CSRF_TOKEN'] = csrf(request)
+	links = ShortLink.objects.all()
+	c['links'] = links
+	return render(request, "see_all.html", c)
