@@ -1,6 +1,6 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<body style="margin-top: 30px">
+<body id="doc-body" style="margin-top: 30px">
 	<div style="text-align:center;">
 		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>
 		<h5><i>The URL shortener to simplify your life.</i><h5>
@@ -131,6 +131,12 @@ a:active {
 
 	$(document).ready(function() {
 
+		now = new Date();
+
+		if (now.getHours() > 21) {
+			$("#doc-body").css("background-color","black");
+			$("#doc-body").css("color","white");
+		};
 
 
 		$("#create").click(function() {
