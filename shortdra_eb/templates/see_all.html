@@ -1,5 +1,5 @@
 <html>
-<meta name="viewport" content="width=500, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <body style="margin-top: 30px">
 <div id="content">
 	<div style="text-align:center;">
@@ -17,7 +17,7 @@
 			<tbody>
 				{% for value in links %}
 				<tr><td><a href="http://hydr.as/{{value.string}}">{{value.string}}</a></td><td style="max-width: 400px;"><a href="{{value.url}}">{{value.url}}</a></td>
-					<td onclick="delete_link(this);" id="{{value.string}}" style="text-align: center;"><img style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/business-bicolor-3/512/erase-512.png"></td></tr>
+					<td onclick="delete_link(this);" id="{{value.string}}" style="text-align: center; cursor: pointer !important;"><img style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/business-bicolor-3/512/erase-512.png"></td></tr>
 				{% endfor %}
 			</tbody>
 		</table>
