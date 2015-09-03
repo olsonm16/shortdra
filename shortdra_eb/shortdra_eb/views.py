@@ -58,3 +58,21 @@ def see_all(request):
 	links = ShortLink.objects.all()
 	c['links'] = links
 	return render(request, "see_all.html", c)
+
+def delete(request):
+
+	raw_string = request.body.split("=")[1]
+	string = urllib.unquote(raw_string).decode('utf8') 
+
+	try:
+		link = ShortLink.objects.get(string__exact=string)
+	except ObjectDoesNotExist:
+		return HttpResponse("The object does not exist")
+	else:
+		ShortLink.objects.get(string__exact=string).delete()
+		return HttpResponse("The link for " + string + " was deleted")
+
+
+
+
+

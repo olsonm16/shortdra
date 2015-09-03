@@ -1,4 +1,5 @@
 <html>
+<meta name="viewport" content="width=500, initial-scale=1">
 <body style="margin-top: 30px">
 	<div style="text-align:center;">
 		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>
@@ -11,22 +12,46 @@
 	<br>
 	<div style="text-align:center;">
 		<br>
-		<input style="padding: 5px;" id="string" placeholder="string"></input><br>
-		<input style="padding: 5px;" id="url" placeholder="https://link.cxx"></input><br>
+		<input id="string" placeholder="string"></input><br>
+		<input style="margin-top:5px;" id="url" placeholder="https://link.cxx"></input><br>
 		<button style="margin-top: 5px; padding: 5px;" id="create">Create</button>
 		<br>
 		<div style="padding: 5px; display:none;" id="success">Link successful!</div>
 		<div style="padding: 5px; display:none; color:red;" id="failure">Please enter some text in each box, silly!</div>
 		<br>
 		<br>
-		<div style="font-size:10px;"> Your text can contain any letters, numbers, or /, +, -, @, %, _, &, or ! symbols. 
-			<br> Pls don't try anything else, cuz I don't want to write a regular expression right now, I'm drinking a smoothie. pls</div>
+		<div style="font-size:10px;"> Your text can contain any letters, numbers, or /, +, -, @, %, _, &, or ! symbols. </div>
 	</div>
-<footer> Version 0.0.2. A product of the hydr.as group.</footer>
+<footer> Version 0.1.9. A product of the hydr.as group.</footer>
 </body>
+</meta>
 </html>
 
 <style>
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+
+#string, #url {
+    padding: 5px;
+    text-align: center;
+    width: 85%;
+    height: 25px;
+    font-size: 12px;
+    }
 
 footer {
 	width:100%;
