@@ -1,0 +1,74 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body id="doc-body" style="margin-top: 30px">
+<div id="content">
+	<div style="text-align:center;">
+		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Flixdra.</a></h3>		
+		<h5><i>Making sense of your Netflix history.</i><h5>
+		<ul>
+		  <li class="banner"><a href="http://hydr.as/flixdra">Home</a></li>
+		  <li class="banner"><a href="https://plot.ly/~mitchhydras">See All Graphs</a></li>
+		</ul>
+
+	<ol type="1" class="center">
+		<li>Log on to Netflix.com</li>
+		<li>Select the profile for analysis</li>
+		<li>On the upper right, click on the profile, and click on Your Account.</li>
+		<li>Under your profile, click on Viewing Activity.</li>
+		<li>Scroll to the bottom of the page until all activity loads.</li>
+		<li>File -> Save As HTML document</li>
+		<li>Upload that HTML document here, and wait for the numbers to be crunched!</li>
+	</ol>
+
+
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+    <input type="file" name="myfile" />
+    <input type="submit" name="submit" value="Upload" />
+</form>
+
+<footer> Version 0.0.3. A product of the Hydr.as Platform.</footer>
+
+</meta>
+
+</html>
+
+<script>
+
+</script>
+
+<style>
+
+footer {
+	width:100%;
+	height:25px;
+	position:absolute;
+	bottom:0;
+	left:0;
+	font-size: 10px;
+}
+
+ol {
+    -webkit-padding-start: 0px;
+}
+
+.center { text-align: center; list-style-position:inside;}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+	padding: 5px;
+}
+
+li#banner {
+    display: inline;
+}
+
+body {
+	font-family: "Trebuchet MS";
+}
+</style>

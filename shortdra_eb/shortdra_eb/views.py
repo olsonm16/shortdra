@@ -8,6 +8,8 @@ from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 import urllib
 
+from netflix import parse_netflix
+
 def root(request):
 	scheme = "http" if not request.is_secure() else "https"
 	path = request.get_full_path()
@@ -15,6 +17,8 @@ def root(request):
 	pieces = domain.split('.')
 	if "shortdra" in pieces:
 		return creator(request)
+	elif "flixdra" in pieces:
+		return flixdra(request)
 	return HttpResponseRedirect("http://hydras.slack.com")
 
 def dispatcher(request, string):
@@ -71,6 +75,19 @@ def delete(request):
 	else:
 		ShortLink.objects.get(string__exact=string).delete()
 		return HttpResponse("The link for " + string + " was deleted")
+
+@ensure_csrf_cookie
+def flixdra(request):
+	c = {}
+	c['CSRF_TOKEN'] = csrf(request)
+	if request.method == 'POST':
+		file = request.FILES['myfile']
+		url, awesome_content =  parse_netflix(file.read())
+		c['graph_link'] = url
+		c['awesome_content'] = awesome_content
+		return render(request, "flixdra_results.html", c)
+	else:
+		return render(request, "flixdra.html", c)
 
 
 

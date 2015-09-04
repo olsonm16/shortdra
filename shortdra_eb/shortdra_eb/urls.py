@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from views import dispatcher, root, creator, transact, see_all, delete
+from views import dispatcher, root, creator, transact, see_all, delete, flixdra
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^create/$', creator),
     url(r'^create/POST/$', transact),
     url(r'^delete/$', delete),
+    url(r'^flixdra/$', flixdra),
     url(r'^(?P<string>[\w\/+-@%_&!]+)/$', dispatcher),
 
 ]
