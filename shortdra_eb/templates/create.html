@@ -21,8 +21,9 @@
 		<br>
 		<br>
 		<div style="font-size:10px;"> Your text can contain any letters, numbers, or /, +, -, @, %, _, &, or ! symbols. </div>
+		<div id="styleSwitcher" style="font-size:8px;"></div>
 	</div>
-<footer> Version 0.1.9. A product of the hydr.as group.</footer>
+<footer> Version 0.2.0. A product of the hydr.as group.</footer>
 </body>
 </meta>
 </html>
@@ -48,7 +49,7 @@
 #string, #url {
     padding: 5px;
     text-align: center;
-    width: 85%;
+    width: 55%;
     height: 25px;
     font-size: 12px;
     }
@@ -96,6 +97,13 @@ a:active {
     color: #006666
 }
 
+#styleSwitcher {
+	padding: 5px;
+	color: #006666;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 
 
 
@@ -133,11 +141,33 @@ a:active {
 
 		now = new Date();
 
-		if (now.getHours() > 21) {
+		var nightMode = false;
+
+		if ((now.getHours() > 21) || (now.getHours() < 6)) {
+			nightMode = true;
 			$("#doc-body").css("background-color","black");
 			$("#doc-body").css("color","white");
 		};
 
+		if (nightMode) {
+			$("#styleSwitcher")[0].innerText += "Switch to Daytime Theme"
+		} else {
+			$("#styleSwitcher")[0].innerText += "Switch to Nighttime Theme"
+		}
+
+		$("#styleSwitcher").click(function() {
+			if (nightMode) {
+				$("#doc-body").css("background-color","white");
+				$("#doc-body").css("color","black");
+				$("#styleSwitcher")[0].innerText = "Switch to Nighttime Theme";
+				nightMode = false;
+			} else {
+				$("#doc-body").css("background-color","black");
+				$("#doc-body").css("color","white");
+				$("#styleSwitcher")[0].innerText = "Switch to Daytime Theme";
+				nightMode = true;
+			}
+		});
 
 		$("#create").click(function() {
 			console.log('create');

@@ -1,6 +1,6 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<body style="margin-top: 30px">
+<body id="doc-body" style="margin-top: 30px">
 <div id="content">
 	<div style="text-align:center;">
 		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>		
@@ -24,7 +24,7 @@
 	</div>
 </div>
 	
-<footer> Version 0.1.9. A product of the hydr.as group.</footer>
+<footer> Version 0.2.0. A product of the hydr.as group.</footer>
 
 </body>
 </meta>
@@ -84,6 +84,16 @@ a:active {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
+
+	$(document).ready(function() {
+
+		now = new Date();
+
+		if (now.getHours() > 21) {
+			$("#doc-body").css("background-color","black");
+			$("#doc-body").css("color","white");
+		};
+	});
 
 	function getCookie(name) {
 	    var cookieValue = null;
