@@ -15,10 +15,16 @@ def root(request):
 	path = request.get_full_path()
 	domain = request.META.get('HTTP_HOST') or request.META.get('SERVER_NAME')
 	pieces = domain.split('.')
-	if "shortdra" in pieces:
-		return creator(request)
-	elif "flixdra" in pieces:
-		return flixdra(request)
+	if len(pieces) == 3:
+		if "shortdra" in pieces:
+			return creator(request)
+		elif "flixdra" in pieces:
+			return flixdra(request)
+		elif "mail" in pieces:
+			return HttpResponseRedirect("https://www.zoho.com/mail/login.html")
+		else:
+			return dispatcher(request, pieces[0])
+	
 	return HttpResponseRedirect("http://hydras.slack.com")
 
 def dispatcher(request, string):

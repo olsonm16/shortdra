@@ -28,18 +28,20 @@ def parse_netflix(text):
 		year = '20' + z[2][0:2]
 		title = z[2][2:]
 
-		if "Season" in title:
+		if "Season" in title or "Series" in title:
 			terms = title.split(":")
 			show_name = terms[0]
+			if " (" in show_name:
+				show_name = show_name.split(" (")[0]
 			episode = terms[2].replace('"', "").replace("\\", "")
 
 			this_content = NetflixContent(episode, "tvEpisode", 0, show_name)
-			request = 'https://itunes.apple.com/search?term=' + episode + '&artistName=' + show_name + '&entity=tvEpisode'
+			request = 'http://itunes.apple.com/search?term=' + episode + " " + show_name + '&artistName=' + show_name + '&entity=tvEpisode'
 
 		else:
 			show_name = title.replace("\\", "")
 			this_content = NetflixContent(show_name, "movie", 0)
-			request = 'https://itunes.apple.com/search?term=' + title + '&entity=movie'
+			request = 'http://itunes.apple.com/search?term=' + title + '&entity=movie'
 
 		r = requests.get(request)
 
@@ -55,7 +57,7 @@ def parse_netflix(text):
 
 		if content_length == 0:
 
-			wiki_req = "https://en.wikipedia.org/wiki/" + show_name.replace(" ", "_")
+			wiki_req = "http://en.wikipedia.org/wiki/" + show_name.replace(" ", "_")
 
 			page = requests.get(wiki_req)
 			if page.status_code == 200:
