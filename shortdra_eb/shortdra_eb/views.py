@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-from models import ShortLink
+from models import ShortLink, Post, Author
 from django.views.decorators.csrf import ensure_csrf_cookie
 import django.middleware.csrf
 from django.shortcuts import render
@@ -22,6 +22,8 @@ def root(request):
 			return flixdra(request)
 		elif "mail" in pieces:
 			return HttpResponseRedirect("https://www.zoho.com/mail/login.html")
+		elif "blog" in pieces:
+			return blogger(request)
 		else:
 			return dispatcher(request, pieces[0])
 	
@@ -35,6 +37,10 @@ def dispatcher(request, string):
 	else:
 		redirect_url = link.get_url()
 	return HttpResponseRedirect(redirect_url)
+
+def blogger(request):
+	posts = Post.objects.all()
+	return HttpResponse(str(posts))
 	
 @ensure_csrf_cookie
 def creator(request):

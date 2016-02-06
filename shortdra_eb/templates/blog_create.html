@@ -2,25 +2,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <body id="doc-body" style="margin-top: 30px">
 	<div style="text-align:center;">
-		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>
-		<h5><i>The URL shortener to simplify your life.</i><h5>
+		<h3>The Hydras Blog</a></h3>
+		<h5><i>Our thoughts on the world.</i><h5>
 		<ul>
-		  <li><a href="http://hydr.as/create">Home</a></li>
-		  <li><a href="http://hydr.as/see_all">See All</a></li>
+		  <li><a href="http://blog.hydr.as/">Read</a></li>
+		  <li><a href="http://blog.hydr.as/create">Write</a></li>
 		</ul>
 	<div>
 	<br>
 	<div style="text-align:center;">
 		<br>
-		<input id="string" placeholder="string"></input><br>
-		<input style="margin-top:5px;" id="url" placeholder="https://link.cxx"></input><br>
+		<textarea style="margin-top:5px;text-align:left; width:20% ;padding:5px;margin: 5px;background-color:black; color:white;" id="title" placeholder="Full Title"></textarea><br>
+		<textarea style="margin-top:5px;text-align:left; width:20%; padding:5px;margin:5px;background-color:black; color:white;" id="short" placeholder="shorttitle"></textarea><br>
+		<textarea id="post" style="width:55%; height:500px; text-align:left; padding:5px;background-color:black; color:white;"></textarea><br>
+		<textarea style="margin-top:5px;text-align:left; padding:5px;background-color:black; color:white;" id="author" placeholder="username"></textarea><br>
 		<button style="margin-top: 5px; padding: 5px;" id="create">Create</button>
 		<br>
 		<div style="padding: 5px; display:none;" id="success">Link successful!</div>
 		<div style="padding: 5px; display:none; color:red;" id="failure">Please enter some text in each box, silly!</div>
 		<br>
 		<br>
-		<div style="font-size:10px;"> Your text can contain any letters, numbers, or /, +, -, @, %, _, &, or ! symbols. </div>
 		<div id="styleSwitcher" style="font-size:8px;"></div>
 	</div>
 <footer> Version 0.2.2. A product of the Hydr.as Platform.</footer>
@@ -63,7 +64,7 @@ footer {
 	font-size: 10px;
 }
 
-body {
+body, textarea {
 	font-family: "Trebuchet MS";
 }
 
@@ -157,12 +158,12 @@ a:active {
 
 		$("#styleSwitcher").click(function() {
 			if (nightMode) {
-				$("#doc-body").css("background-image","url("http://cdn3.artstation.com/p/assets/images/images/001/914/607/large/shen-fei-space-oasis.jpg")"
+				$("#doc-body").css("background-color","white");
 				$("#doc-body").css("color","black");
 				$("#styleSwitcher")[0].innerText = "Switch to Nighttime Theme";
 				nightMode = false;
 			} else {
-				$("#doc-body").css("background-image","url("http://cdn3.artstation.com/p/assets/images/images/001/914/607/large/shen-fei-space-oasis.jpg")"
+				$("#doc-body").css("background-color","black");
 				$("#doc-body").css("color","white");
 				$("#styleSwitcher")[0].innerText = "Switch to Daytime Theme";
 				nightMode = true;
