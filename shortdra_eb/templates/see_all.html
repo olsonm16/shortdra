@@ -26,7 +26,7 @@
 			<thead><th>String</th><th>URL</th><td>Delete</th></thead>
 			<tbody>
 				{% for value in links %}
-				<tr><td><a href="http://hydr.as/{{value.string}}">{{value.string}}</a></td><td><a href="{{value.url}}">{{value.url}}</a></td>
+				<tr><td><a href="http://hydr.as/{{value.string}}">{{value.string}}</a></td><td style="max-width: 5;"><a href="{{value.url}}">{{value.url}}</a></td>
 					<td onclick="delete_link(this);" id="{{value.string}}" style="text-align: center; cursor: pointer !important;"><img style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/business-bicolor-3/512/erase-512.png"></td></tr>
 				{% endfor %}
 			</tbody>
@@ -212,7 +212,7 @@ td {
 
 table {
     border-collapse: collapse;
-    width: 75%;
+    width: 85%;
 }
 
 table, th, td {
