@@ -25,7 +25,7 @@ def get_client_location(ip):
 	return r.json()
 
 def city_state(json):
-	return "Thanks for visitng us from: " + str(json['city']) + ', ' + str(json['region']) + "!"
+	return "Thanks for visiting us from: " + str(json['city']) + ', ' + str(json['region']) + "!"
 
 
 def root(request):
