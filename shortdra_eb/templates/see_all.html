@@ -23,7 +23,7 @@
 		<h5><i>The URL shortener to simplify your life.</i><h5>
 	<div style="text-align:center;">
 		<table style="font-size:11px;"align="center" border="1" id="links">
-			<thead><th>String</th><th>URL</th><td>Delete</th></thead>
+			<thead><th>String</th><th>URL</th><th>Delete</th></thead>
 			<tbody>
 				{% for value in links %}
 				<tr><td><a href="http://hydr.as/{{value.string}}">{{value.string}}</a></td><td style="max-width: 5;"><a href="{{value.url}}">{{value.url}}</a></td>
