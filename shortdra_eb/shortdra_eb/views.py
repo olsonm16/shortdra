@@ -10,11 +10,20 @@ import urllib
 
 from netflix import parse_netflix
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 def root(request):
 	scheme = "http" if not request.is_secure() else "https"
 	path = request.get_full_path()
 	domain = request.META.get('HTTP_HOST') or request.META.get('SERVER_NAME')
 	pieces = domain.split('.')
+	ip = get_client_ip(request)
 	if len(pieces) == 3:
 		if "shortdra" in pieces:
 			return creator(request)
@@ -24,6 +33,8 @@ def root(request):
 			return HttpResponseRedirect("https://www.zoho.com/mail/login.html")
 		elif "blog" in pieces:
 			return blogger(request)
+		elif "ip" in pieces:
+			return HttpResponse(str(ip))
 		else:
 			return dispatcher(request, pieces[0])
 	
