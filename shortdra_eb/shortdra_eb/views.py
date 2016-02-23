@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 import urllib
+import requests
 
 from netflix import parse_netflix
 
@@ -18,12 +19,19 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
+def get_client_location(ip):
+	request = "http://freegeoip.net/json/" + str(ip)
+	r = requests.get(request)
+	return r
+
+
 def root(request):
 	scheme = "http" if not request.is_secure() else "https"
 	path = request.get_full_path()
 	domain = request.META.get('HTTP_HOST') or request.META.get('SERVER_NAME')
 	pieces = domain.split('.')
-	ip = get_client_ip(request)
+	r = get_client_location(get_client_ip(request))
+	client_location = "http://freegeoip.net/json/137.113.212.49"
 	if len(pieces) == 3:
 		if "shortdra" in pieces:
 			return creator(request)
@@ -34,7 +42,7 @@ def root(request):
 		elif "blog" in pieces:
 			return blogger(request)
 		elif "ip" in pieces:
-			return HttpResponse(str(ip))
+			return HttpResponse(str(r))
 		else:
 			return dispatcher(request, pieces[0])
 	
