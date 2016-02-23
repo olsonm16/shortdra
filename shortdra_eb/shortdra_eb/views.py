@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from models import ShortLink, Post, Author
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -22,7 +22,7 @@ def get_client_ip(request):
 def get_client_location(ip):
 	request = "http://freegeoip.net/json/" + str(ip)
 	r = requests.get(request)
-	return r
+	return r.json()
 
 
 def root(request):
@@ -31,7 +31,6 @@ def root(request):
 	domain = request.META.get('HTTP_HOST') or request.META.get('SERVER_NAME')
 	pieces = domain.split('.')
 	r = get_client_location(get_client_ip(request))
-	client_location = "http://freegeoip.net/json/137.113.212.49"
 	if len(pieces) == 3:
 		if "shortdra" in pieces:
 			return creator(request)
@@ -42,7 +41,7 @@ def root(request):
 		elif "blog" in pieces:
 			return blogger(request)
 		elif "ip" in pieces:
-			return HttpResponse(str(r))
+			return JsonResponse(r)
 		else:
 			return dispatcher(request, pieces[0])
 	
