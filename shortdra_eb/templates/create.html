@@ -1,29 +1,46 @@
 <html>
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:900' rel='stylesheet' type='text/css'>
+</head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HYDRAS | Shortdra</title>
+<header id="siteheader">
+	<div id="header-content" style="cursor:default;">
+		<a style="color: #f0f8ff; text-shadow: none;">hydras platform</a>
+	</div>
+  	 <div tabindex=-1 id="header-content">
+		<a tabindex=-1 href="http://mitch.hydr.as/">about</a>
+  	</div>
+  	<div tabindex=-1 id="header-content" style="font-weight:bold;">
+		<a tabindex=-1 href="/">shortdra</a>
+  	</div>
+</header>
 <body id="doc-body" style="margin-top: 30px">
 	<div style="text-align:center;">
-		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>
+		<h3 tabindex=-1 >Welcome to <a tabindex=-1 href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>
 		<h5><i>The URL shortener to simplify your life.</i><h5>
-		<ul>
-		  <li><a href="http://hydr.as/create">Home</a></li>
-		  <li><a href="http://hydr.as/see_all">See All</a></li>
-		</ul>
+		<div style="font-weight:300;">
+			<p>Please enter a string to complete the link: http://hydr.as/&lt;string&gt; <br>
+			Then, enter a URL for that short-link to point to.</p>
+		</div>
 	<div>
-	<br>
 	<div style="text-align:center;">
 		<br>
-		<input id="string" placeholder="string"></input><br>
-		<input style="margin-top:5px;" id="url" placeholder="https://link.cxx"></input><br>
-		<button style="margin-top: 5px; padding: 5px;" id="create">Create</button>
+		<input tabindex=1 id="string" placeholder="string"></input><br>
+		<input tabindex=2 style="margin-top:5px;" id="url" placeholder="https://link.cxx"></input><br>
+		<div class="middle-button" style="margin-top:-9px;">
+			<p id="create" style="font-weight: bold" class="mock-link" tabindex=3>Create</p>
+			<p class="mock-link" id="see-all" style="margin-top:-9px;" tabindex=-1><a href="http://hydr.as/see_all">See All</a></p>
+		</div>
 		<br>
 		<div style="padding: 5px; display:none;" id="success">Link successful!</div>
-		<div style="padding: 5px; display:none; color:red;" id="failure">Please enter some text in each box, silly!</div>
+		<div style="display:none; color:#99cfff;" id="failure">Please enter some text in each box!</div>
 		<br>
 		<br>
 		<div style="font-size:10px;"> Your text can contain any letters, numbers, or /, +, -, @, %, _, &, or ! symbols. </div>
-		<div id="styleSwitcher" style="font-size:8px;"></div>
 	</div>
-<footer> Version 0.2.2. A product of the Hydr.as Platform.</footer>
+<footer><div id="footer-text"> A product of the Hydr.as Platform.</div></footer>
 </body>
 </meta>
 </html>
@@ -31,7 +48,10 @@
 <style>
 
 ::-webkit-input-placeholder {
-   text-align: center;
+	text-align: center;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
 }
 
 :-moz-placeholder { /* Firefox 18- */
@@ -46,25 +66,66 @@
    text-align: center; 
 }
 
+input:focus{
+    outline: none;
+}
+
+input {
+	width: 25px;
+	background-color: #99cfff;
+	border: none;
+}
+
+.noshadow:hover {
+	text-shadow: none !important;
+}
+
+.middle-button {
+	margin-top: 5px;
+	padding: 5px;
+	width: 10%;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.mock-link {
+	color: #99cfff;
+	background-color: black;
+    padding: 10px;
+}
+
+.mock-link:hover {
+	cursor: pointer;
+	text-shadow:0px 0px 5px #99cfff;	
+}
+
 #string, #url {
     padding: 5px;
     text-align: center;
-    width: 55%;
+    width: 30%;
     height: 25px;
     font-size: 12px;
+    opacity: 0.9;
+    color: #f0f8ff;
     }
 
 footer {
 	width:100%;
-	height:25px;
+	height:45px;
 	position:absolute;
-	bottom:0;
+	bottom:10%;
 	left:0;
 	font-size: 10px;
+	background-color: black;
+
 }
 
-body {
-	font-family: "Trebuchet MS";
+#footer-text {
+	height: 45px;
+	line-height: 45px;
+	font-weight: 300;
+	font-size:;
 }
 
 ul {
@@ -79,28 +140,75 @@ li {
 }
 
 a:link {
-    color: #006666
+    color: #99cfff;
 }
 
 /* visited link */
 a:visited {
-    color: #006666
+    color: #99cfff;
 }
 
 /* mouse over link */
 a:hover {
-    color: #006666
+    color: #99cfff;
+	text-shadow:0px 0px 5px #99cfff;	
 }
 
 /* selected link */
 a:active {
-    color: #006666
+    color: #99cfff;
 }
 
-#styleSwitcher {
-	padding: 5px;
-	color: #006666;
-	text-decoration: underline;
+
+body {
+ 	background-image: url("http://www.magic4walls.com/wp-content/uploads/2014/04/Opera-House-Sydney-beautiful-night-moon-dreaming-city-wallpaper.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center top;
+	font-family: 'Lato', sans-serif;
+	color: #f0f8ff;
+	font-weight: 300 !important;
+}
+
+h3, h5 {
+	font-weight: 300 !important;
+}
+
+a {
+  color: #99cfff; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+#siteheader {
+	text-align:center;
+    width:100%;
+    background-color: black;
+    vertical-align: middle;
+}
+
+#header-content {
+    padding: 10px;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    color: #99cfff;
+    margin-left: 10px;
+   	line-height: 45px;
+    width: fixed;
+}
+
+#header-content-static {
+    padding: 10px;
+    position: relative;
+    display: inline-block;
+    color: #99cfff;
+    margin-left: 10px;
+   	line-height: 45px;
+    width: fixed;
+}
+
+#header-content:hover {
+	text-shadow:0px 0px 5px #99cfff;	
 	cursor: pointer;
 }
 
@@ -139,34 +247,8 @@ a:active {
 
 	$(document).ready(function() {
 
-		now = new Date();
-
-		var nightMode = false;
-
-		if ((now.getHours() > 21) || (now.getHours() < 6)) {
-			nightMode = true;
-			$("#doc-body").css("background-color","black");
-			$("#doc-body").css("color","white");
-		};
-
-		if (nightMode) {
-			$("#styleSwitcher")[0].innerText += "Switch to Daytime Theme"
-		} else {
-			$("#styleSwitcher")[0].innerText += "Switch to Nighttime Theme"
-		}
-
-		$("#styleSwitcher").click(function() {
-			if (nightMode) {
-				$("#doc-body").css("background-color","white");
-				$("#doc-body").css("color","black");
-				$("#styleSwitcher")[0].innerText = "Switch to Nighttime Theme";
-				nightMode = false;
-			} else {
-				$("#doc-body").css("background-color","black");
-				$("#doc-body").css("color","white");
-				$("#styleSwitcher")[0].innerText = "Switch to Daytime Theme";
-				nightMode = true;
-			}
+		$("#see-all").click(function() {
+			window.location.href = "http://hydr.as/see_all";
 		});
 
 		$("#create").click(function() {
