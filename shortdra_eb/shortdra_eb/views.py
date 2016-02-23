@@ -14,15 +14,18 @@ from netflix import parse_netflix
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
+        ip = x_forwarded_for.split(',')[-1]
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
 def get_client_location(ip):
-	request = "http://freegeoip.net/json/" + str(ip)
+	request = 'http://ipinfo.io/' + str(ip)
 	r = requests.get(request)
 	return r.json()
+
+def city_state(json):
+	return "Thanks for visitng us from: " + str(json['city']) + ', ' + str(json['region']) + "!"
 
 
 def root(request):
@@ -30,7 +33,7 @@ def root(request):
 	path = request.get_full_path()
 	domain = request.META.get('HTTP_HOST') or request.META.get('SERVER_NAME')
 	pieces = domain.split('.')
-	r = get_client_location(get_client_ip(request))
+	r = city_state(get_client_location(get_client_ip(request)))
 	if len(pieces) == 3:
 		if "shortdra" in pieces:
 			return creator(request)
@@ -41,7 +44,7 @@ def root(request):
 		elif "blog" in pieces:
 			return blogger(request)
 		elif "ip" in pieces:
-			return JsonResponse(r)
+			return HttpResponse(str(r))
 		else:
 			return dispatcher(request, pieces[0])
 	
