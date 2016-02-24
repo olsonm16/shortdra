@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <link href="{% static 'css/global.css' %}"
+          rel="stylesheet" media="screen">
+     <link href='https://fonts.googleapis.com/css?family=Lato:400,900,700,300,100' rel='stylesheet' type='text/css'>
+  </head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HYDRAS | Shortdra</title>
+<header id="siteheader">
+  <div id="header-content" style="cursor:default;">
+    <a style="color: #f0f8ff; text-shadow: none; font-weight:900;">hydras platform</a>
+  </div>
+     <div tabindex=-1 id="header-content">
+    <a tabindex=-1 style="font-weight:300;"href="http://mitch.hydr.as/">about</a>
+    </div>
+    <div tabindex=-1 id="header-content" style="font-weight:bold;">
+    <a tabindex=-1 href="/create">shortdra</a>
+    </div>
+</header>
+<body id="doc-body" style="margin-top: 30px;">
+
+  <body>
+    {% block content %}
+    {% endblock %}
+
+  </body>
+  <div><footer><div id="footer-text"> A product of the Hydr.as Platform.</div></footer></div>
+</html>

@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response
 from django.template.context_processors import csrf
 import urllib
 import requests
+import json
 
 from netflix import parse_netflix
 
@@ -25,7 +26,11 @@ def get_client_location(ip):
 	return r.json()
 
 def city_state(json):
-	return "Thanks for visiting us from: " + str(json['city']) + ', ' + str(json['region']) + "!"
+	try:
+		text = "Thanks for visiting us from: " + str(json['city']) + ', ' + str(json['region']) + "!"
+	except:
+		text = "Unknown location"
+	return text
 
 
 def root(request):
@@ -66,27 +71,54 @@ def blogger(request):
 @ensure_csrf_cookie
 def creator(request):
 	c = {}
-	c['CSRF_TOKEN'] = csrf(request)
+	c['csrftoken'] = csrf(request)
+	print(c)
 	return render(request, "create.html", c)
 
-def transact(request):
-	split = request.body.split("&")
-	raw_text = split[0].split("=")[1]
-	raw_url = split[1].split("=")[1]
-	url = urllib.unquote(raw_url).decode('utf8') 
-	text = urllib.unquote(raw_text).decode('utf8') 
+def make_link(request):
+	string = ""
+	url = ""
+	response_status = 200
+	if request.method == 'POST':
+		query_dict = request.POST.dict()
+		try:
+			string = str(query_dict[u'string'])
+			url = str(query_dict[u'link'])
+		except:
+			response_status = 400
+			response_text = "Malformed request: please make sure your request includes a string and url field in it's body."
+	else:
+		response_status = 400
+		response_text = "Please use a POST request."
+	if linkAvaliable(string):
+		saveLink(string, url)
+		response_text = "Link created!"
+	else:
+		response_status = 422
+		response_text = "Sorry, that shortlink is already taken."
+
+	return JsonResponse(response_builder(response_status, response_text))
+
+def response_builder(status, text):
+	r = {}
+	r['status_code'] = str(status)
+	r['body'] = {}
+	r['body']['message'] = text
+	return r
+
+def linkAvaliable(string):
+	try:
+		link = ShortLink.objects.get(string__exact=string)
+	except ObjectDoesNotExist:
+		return True
+	return False
+
+def saveLink(text, url):
 	if ("http://" not in url) and ("https://" not in url):
 		url = "http://" + url
-	try:
-		link = ShortLink.objects.get(string__exact=text)
-	except ObjectDoesNotExist:
-		link = ShortLink(string=text, url=url)
-		link.save(force_insert=True)
-	else:
-		 link.url = url
-		 link.save()
+	link = ShortLink(string=text, url=url)
+	link.save(force_insert=True)
 
-	return HttpResponse("Success!")
 
 @ensure_csrf_cookie
 def see_all(request):

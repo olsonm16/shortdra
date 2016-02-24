@@ -1,228 +1,24 @@
-<html>
-<head>
-	<link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Lato:900' rel='stylesheet' type='text/css'>
-</head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HYDRAS | Shortdra</title>
-<header id="siteheader">
-	<div id="header-content" style="cursor:default;">
-		<a style="color: #f0f8ff; text-shadow: none;">hydras platform</a>
-	</div>
-  	 <div tabindex=-1 id="header-content">
-		<a tabindex=-1 href="http://mitch.hydr.as/">about</a>
-  	</div>
-  	<div tabindex=-1 id="header-content" style="font-weight:bold;">
-		<a tabindex=-1 href="http://shortdra.hydr.as/">shortdra</a>
-  	</div>
-</header>
-<body id="doc-body" style="margin-top: 30px">
+{% extends "base.html" %}
+{% block content %}
 <div id="content">
 	<div style="text-align:center;">
 		<h3>Welcome to <a href="https://github.com/olsonm16/shortdra">Shortdra.</a></h3>		
 		<h5><i>The URL shortener to simplify your life.</i><h5>
+	</div>
 	<div style="text-align:center;">
 		<table style="font-size:11px;"align="center" border="1" id="links">
 			<thead><th>String</th><th>URL</th><th>Delete</th></thead>
 			<tbody>
 				{% for value in links %}
-				<tr><td><a href="http://hydr.as/{{value.string}}">{{value.string}}</a></td><td style="max-width: 5;"><a href="{{value.url}}">{{value.url}}</a></td>
-					<td onclick="delete_link(this);" id="{{value.string}}" style="text-align: center; cursor: pointer !important;"><img style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/business-bicolor-3/512/erase-512.png"></td></tr>
+				<tr><td width=20%><a href="http://hydr.as/{{value.string}}">{{value.string}}</a></td><td style="max-width: 5;"><a href="{{value.url}}">{{value.url}}</a></td>
+					<td onclick="delete_link(this);" id="{{value.string}}" style="text-align: center; cursor: pointer !important; width:50px;"><img style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/business-bicolor-3/512/erase-512.png"></td></tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
 </div>
-<footer><div id="footer-text"> A product of the Hydr.as Platform.</div></footer>
 </body>
 </meta>
-</html>
-
-<style>
-
-::-webkit-input-placeholder {
-	text-align: center;
-	color: white;
-	font-family: 'Lato', sans-serif;
-	font-weight: 300;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   text-align: center;  
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   text-align: center;  
-}
-
-:-ms-input-placeholder {  
-   text-align: center; 
-}
-
-input:focus{
-    outline: none;
-}
-
-input {
-	width: 25px;
-	background-color: #99cfff;
-	border: none;
-}
-
-.noshadow:hover {
-	text-shadow: none !important;
-}
-
-.middle-button {
-	margin-top: 5px;
-	padding: 5px;
-	width: 10%;
-	text-align: center;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-.mock-link {
-	color: #99cfff;
-	background-color: black;
-    padding: 10px;
-}
-
-.mock-link:hover {
-	cursor: pointer;
-	text-shadow:0px 0px 5px #99cfff;	
-}
-
-#string, #url {
-    padding: 5px;
-    text-align: center;
-    width: 30%;
-    height: 25px;
-    font-size: 12px;
-    opacity: 0.9;
-    color: #f0f8ff;
-    }
-
-footer {
-	width:100%;
-	height:45px;
-	position:absolute;
-	bottom:10%;
-	left:0;
-	font-size: 10px;
-	background-color: black;
-	text-align: center;
-
-}
-
-#footer-text {
-	height: 45px;
-	line-height: 45px;
-	font-weight: 300;
-	font-size:;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    display: inline;
-    padding: 5px;
-}
-
-a:link {
-    color: #99cfff;
-}
-
-/* visited link */
-a:visited {
-    color: #99cfff;
-}
-
-/* mouse over link */
-a:hover {
-    color: #99cfff;
-	text-shadow:0px 0px 5px #99cfff;	
-}
-
-/* selected link */
-a:active {
-    color: #99cfff;
-}
-
-
-body {
- 	background-image: url("http://www.magic4walls.com/wp-content/uploads/2014/04/Opera-House-Sydney-beautiful-night-moon-dreaming-city-wallpaper.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center top;
-	font-family: 'Lato', sans-serif;
-	color: #f0f8ff;
-	font-weight: 300 !important;
-}
-
-h3, h5 {
-	font-weight: 300 !important;
-}
-
-a {
-  color: #99cfff; /* blue colors for links too */
-  text-decoration: inherit; /* no underline */
-}
-
-#siteheader {
-	text-align:center;
-    width:100%;
-    background-color: black;
-    vertical-align: middle;
-}
-
-#header-content {
-    padding: 10px;
-    vertical-align: middle;
-    position: relative;
-    display: inline-block;
-    color: #99cfff;
-    margin-left: 10px;
-   	line-height: 45px;
-    width: fixed;
-}
-
-#header-content-static {
-    padding: 10px;
-    position: relative;
-    display: inline-block;
-    color: #99cfff;
-    margin-left: 10px;
-   	line-height: 45px;
-    width: fixed;
-}
-
-#header-content:hover {
-	text-shadow:0px 0px 5px #99cfff;	
-	cursor: pointer;
-}
-
-td {
-	word-wrap: break-word;
-}
-
-table {
-    border-collapse: collapse;
-    width: 85%;
-}
-
-table, th, td {
-    border: 1px solid #99cfff;
-}
-
-
-
-
-</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
@@ -270,3 +66,4 @@ table, th, td {
 	}
 
 </script>
+{% endblock %}

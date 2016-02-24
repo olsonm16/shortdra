@@ -16,14 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from views import dispatcher, root, creator, transact, see_all, delete, flixdra
+from views import dispatcher, root, creator, see_all, delete, flixdra, make_link
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', root),
     url(r'^see_all/$', see_all),
     url(r'^create/$', creator),
-    url(r'^create/POST/$', transact),
+    url(r'^api/v1/shortdra/add/$', make_link),
     url(r'^delete/$', delete),
     url(r'^flixdra/$', flixdra),
     url(r'^(?P<string>[\w\/+-@%_&!]+)/$', dispatcher),
