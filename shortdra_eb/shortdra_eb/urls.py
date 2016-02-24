@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from views import dispatcher, root, creator, see_all, delete, flixdra, make_link
 
@@ -29,3 +30,5 @@ urlpatterns = [
     #url(r'^(?P<string>[\w\/+-@%_&!]+)/$', dispatcher),
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
