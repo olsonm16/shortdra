@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
-STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "static")
 STATIC_URL = '/static/'
 
 # Application definition
