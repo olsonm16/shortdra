@@ -29,9 +29,8 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'), '/var/www/static', 
-]
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
+STATIC_URL = '/static/'
 
 # Application definition
 
@@ -97,9 +96,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
