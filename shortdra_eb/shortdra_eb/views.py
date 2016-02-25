@@ -87,7 +87,7 @@ def make_link(request):
 			url = str(query_dict[u'link'])
 		except:
 			response_status = 400
-			response_text = "Malformed request: please make sure your request includes a string and url field in its body."
+			response_text = "Malformed request: please make sure your request includes a string and link field in its body."
 		else:
 			if linkAvaliable(string):
 				saveLink(string, url)
@@ -99,7 +99,7 @@ def make_link(request):
 		response_status = 400
 		response_text = "Please use a POST request."
 
-	return JsonResponse(response_builder(response_status, response_text))
+	return JsonResponse(response_builder(response_status, response_text), status=response_status)
 
 def response_builder(status, text):
 	r = {}
