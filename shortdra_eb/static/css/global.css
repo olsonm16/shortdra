@@ -5,6 +5,11 @@
 	font-weight: 300;
 }
 
+-webkit-user-select: none; /* Chrome/Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+ */
+
+
 :-moz-placeholder { /* Firefox 18- */
    text-align: center;  
 }
@@ -140,7 +145,7 @@ a {
     vertical-align: middle;
 }
 
-#header-content {
+.header-content {
     padding: 10px;
     vertical-align: middle;
     position: relative;
@@ -161,7 +166,7 @@ a {
     width: fixed;
 }
 
-#header-content:hover {
+.header-content:hover {
 	text-shadow:0px 0px 5px #99cfff;	
 	cursor: pointer;
 }
