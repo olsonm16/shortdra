@@ -231,7 +231,5 @@ def run_tests(local=False):
 
 
 run_tests(local=True)
-#run_tests()
-        
-        
-    
+run_tests()
+
