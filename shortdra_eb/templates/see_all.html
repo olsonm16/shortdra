@@ -51,9 +51,9 @@
 	function delete_link(item) {
     	var id = item.id;
 		$.ajax({
-	        url : "/delete/",
-	        type: "PUT",
-	        data: {id: id},
+	        url : "/api/v1/shortdra/delete/",
+	        type: "DELETE",
+	        data: {'string': id},
 	        success : function(json) {
 	        	console.log(json);
 	        	item.parentNode.remove();  

@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^see_all/$', see_all),
     url(r'^create/$', creator),
     url(r'^api/v1/shortdra/add/$', make_link),
-    url(r'^delete/$', delete),
+    url(r'^api/v1/shortdra/delete/$', delete),
     url(r'^flixdra/$', flixdra),
     url(r'^(?P<string>[\w\/+-@%_&!]+)/$', dispatcher),
 

@@ -1,4 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import QueryDict
 from django.core.exceptions import ObjectDoesNotExist
 from models import ShortLink, Post, Author
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
@@ -101,6 +102,38 @@ def make_link(request):
 
 	return JsonResponse(response_builder(response_status, response_text), status=response_status)
 
+@csrf_exempt
+def delete(request):
+
+	string = ""
+	link = ""
+	response_status = 200
+	response_text = ""
+
+	if request.method == 'DELETE':
+		query_dict = QueryDict(request.body)
+		try:
+			string = str(query_dict[u'string'])
+		except:
+			response_status = 400
+			response_text = "Malformed request: please make sure your delete request includes a string field."
+		else:
+			try:
+				link = ShortLink.objects.get(string__exact=string)
+			except ObjectDoesNotExist:
+				response_status = 422
+				response_text = "That shortlink does not exist, and cannot be deleted."
+			else:
+				ShortLink.objects.get(string__exact=string).delete()
+				response_status = 200
+				response_text = "The link for " + string + " was deleted"
+	else:
+		response_status = 400
+		response_text = "Please use a DELETE request."
+
+	return JsonResponse(response_builder(response_status, response_text), status=response_status)
+
+
 def response_builder(status, text):
 	r = {}
 	r['status_code'] = str(status)
@@ -129,20 +162,6 @@ def see_all(request):
 	links = ShortLink.objects.all()
 	c['links'] = links
 	return render(request, "see_all.html", c)
-
-@csrf_exempt
-def delete(request):
-
-	raw_string = request.body.split("=")[1]
-	string = urllib.unquote(raw_string).decode('utf8') 
-
-	try:
-		link = ShortLink.objects.get(string__exact=string)
-	except ObjectDoesNotExist:
-		return HttpResponse("The object does not exist")
-	else:
-		ShortLink.objects.get(string__exact=string).delete()
-		return HttpResponse("The link for " + string + " was deleted")
 
 @ensure_csrf_cookie
 def flixdra(request):
