@@ -5,10 +5,9 @@
 	font-weight: 300;
 }
 
--webkit-user-select: none; /* Chrome/Safari */        
--moz-user-select: none; /* Firefox */
--ms-user-select: none; /* IE10+ */
-
+div {
+    outline:none;
+}
 
 :-moz-placeholder { /* Firefox 18- */
    text-align: center;  
