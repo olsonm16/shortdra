@@ -88,14 +88,13 @@ def make_link(request):
 		except:
 			response_status = 400
 			response_text = "Malformed request: please make sure your request includes a string and url field in its body."
-
-		if linkAvaliable(string):
-			saveLink(string, url)
-			response_text = "Link created!"
 		else:
-			response_status = 422
-			response_text = "Sorry, that shortlink is already taken."
-
+			if linkAvaliable(string):
+				saveLink(string, url)
+				response_text = "Link created!"
+			else:
+				response_status = 422
+				response_text = "Sorry, that shortlink is already taken."
 	else:
 		response_status = 400
 		response_text = "Please use a POST request."
