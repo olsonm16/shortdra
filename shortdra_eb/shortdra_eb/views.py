@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from models import ShortLink, Post, Author
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 import django.middleware.csrf
 from django.shortcuts import render
 from django.shortcuts import render_to_response
@@ -75,6 +75,7 @@ def creator(request):
 	print(c)
 	return render(request, "create.html", c)
 
+@csrf_exempt
 def make_link(request):
 	string = ""
 	url = ""
