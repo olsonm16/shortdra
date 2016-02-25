@@ -87,16 +87,18 @@ def make_link(request):
 			url = str(query_dict[u'link'])
 		except:
 			response_status = 400
-			response_text = "Malformed request: please make sure your request includes a string and url field in it's body."
+			response_text = "Malformed request: please make sure your request includes a string and url field in its body."
+
+		if linkAvaliable(string):
+			saveLink(string, url)
+			response_text = "Link created!"
+		else:
+			response_status = 422
+			response_text = "Sorry, that shortlink is already taken."
+
 	else:
 		response_status = 400
 		response_text = "Please use a POST request."
-	if linkAvaliable(string):
-		saveLink(string, url)
-		response_text = "Link created!"
-	else:
-		response_status = 422
-		response_text = "Sorry, that shortlink is already taken."
 
 	return JsonResponse(response_builder(response_status, response_text))
 
@@ -129,6 +131,7 @@ def see_all(request):
 	c['links'] = links
 	return render(request, "see_all.html", c)
 
+@csrf_exempt
 def delete(request):
 
 	raw_string = request.body.split("=")[1]
