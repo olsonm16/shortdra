@@ -156,7 +156,7 @@ def avail_check(request):
 				response_text = "Shortlink taken!"
 	else:
 		response_status = 400
-		response_text = "Please use a GET request."
+		response_text = "Please use a POST request."
 
 	return JsonResponse(response_builder(response_status, response_text), status=response_status)
 
