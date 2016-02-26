@@ -74,6 +74,7 @@
 	                type: "GET",
 	                data: {'string': text},
 	                success : function(json) {
+	                	$("#failure").hide();
 	                    if (json) {
 	                    	console.dir(json);
 
