@@ -32,7 +32,7 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 if "mitchs-mbp" in socket.gethostname():
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static"), '/var/www/static', 
+        os.path.join(BASE_DIR, "static"), 
     ]
 else:
     STATICFILES_DIRS = []
