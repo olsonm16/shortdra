@@ -138,7 +138,7 @@ def avail_check(request):
 	response_status = 200
 	response_text = ""
 
-	if request.method == 'GET':
+	if request.method == 'POST':
 		query_dict = QueryDict(request.body).dict()
 		try:
 			string = str(query_dict[u'string'])

@@ -71,7 +71,7 @@
 			if (text.length > 0) {
 				$.ajax({
 	                url : "/api/v1/shortdra/avail/",
-	                type: "GET",
+	                type: "POST",
 	                data: {'string': text},
 	                success : function(json) {
 	                	$("#failure").hide();

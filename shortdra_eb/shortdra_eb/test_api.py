@@ -184,7 +184,7 @@ def test_avail_check(key, local=False):
         r = "http://shortdra.hydr.as/api/v1/shortdra/avail/"
     d = {}
     d['string'] = key
-    response = requests.get(r, data=d)
+    response = requests.post(r, data=d)
     response_data = response.json()
     if response.status_code == 200:
         if local:
