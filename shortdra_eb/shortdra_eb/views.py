@@ -73,7 +73,6 @@ def blogger(request):
 def creator(request):
 	c = {}
 	c['csrftoken'] = csrf(request)
-	print(c)
 	return render(request, "create.html", c)
 
 @csrf_exempt

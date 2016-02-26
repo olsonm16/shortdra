@@ -229,7 +229,16 @@ def run_tests(local=False):
 
     print("All tests passed.")
 
+def localServerUp():
+    r = "http://127.0.0.1:8000/"
+    try:
+        k =requests.get(r, data={})
+        return True
+    except:
+        return False
 
-run_tests(local=True)
+
+if localServerUp():
+    run_tests(local=True)
 run_tests()
 
