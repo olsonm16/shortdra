@@ -186,7 +186,6 @@ def test_avail_check(key, local=False):
     d['string'] = key
     response = requests.get(r, data=d)
     response_data = response.json()
-    print(response_data)
     if response.status_code == 200:
         if local:
             print("Key: " + key + " is available locally.")

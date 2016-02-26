@@ -139,14 +139,12 @@ def avail_check(request):
 	response_text = ""
 
 	if request.method == 'GET':
-		query_dict = request.GET.dict()
-		print(request.GET)
-		print(query_dict)
+		query_dict = QueryDict(request.body).dict()
 		try:
 			string = str(query_dict[u'string'])
 		except:
 			response_status = 400
-			response_text = "Malformed request: please make sure your Available request includes a string field."
+			response_text = "Malformed request: please make sure your avail request includes a string field."
 		else:
 			try:
 				link = ShortLink.objects.get(string__exact=string)
