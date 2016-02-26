@@ -176,6 +176,28 @@ def test_malformed_delete_wrongtype(key, local=False):
     else:
         print("The status code was not 400")
         return False
+
+def test_avail_check(key, local=False):
+    if local:
+        r = "http://127.0.0.1:8000/api/v1/shortdra/avail/"
+    else:
+        r = "http://shortdra.hydr.as/api/v1/shortdra/avail/"
+    d = {}
+    d['string'] = key
+    response = requests.get(r, data=d)
+    response_data = response.json()
+    print(response_data)
+    if response.status_code == 200:
+        if local:
+            print("Key: " + key + " is available locally.")
+        else:
+            print("Key: " + key + " is available in production.")
+        print(response)
+        print("API returns message: " + response_data['body']['message'] + " with status " + response_data['status_code'])
+        return True
+    else:
+        print("The status code was not 200")
+        return False  
     
 def create_random_key(n):
     key = ""
@@ -190,6 +212,7 @@ def run_tests(local=False):
     success_key = create_random_key(15)
     fail_key = create_random_key(15)
     width = len("_________Running Test Suite on Add Shortlink API_________")
+    """
 
     print("\n_________Running Test Suite on Add Shortlink API_________\n")
 
@@ -223,8 +246,15 @@ def run_tests(local=False):
     assert test_malformed_delete(success_key, local)
     print("\n" + "_"*width + "\n")
 
+    print("\n_________Running Test Suite on Available Check Shortlink API_________\n")
+
     print("Testing malformed delete request with incorrect PUT request type")
     assert test_malformed_delete_wrongtype(success_key, local)
+    print("\n" + "_"*width + "\n")
+    """
+
+    print("Testing successful avail check")
+    assert test_avail_check(success_key, local)
     print("\n" + "_"*width + "\n")
 
     print("All tests passed.")

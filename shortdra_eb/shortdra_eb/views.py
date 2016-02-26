@@ -132,6 +132,35 @@ def delete(request):
 
 	return JsonResponse(response_builder(response_status, response_text), status=response_status)
 
+@csrf_exempt
+def avail_check(request):
+	string = ""
+	response_status = 200
+	response_text = ""
+
+	if request.method == 'GET':
+		query_dict = QueryDict(request.body)
+		try:
+			string = str(query_dict[u'string'])
+		except:
+			response_status = 400
+			response_text = "Malformed request: please make sure your Available request includes a string field."
+		else:
+			try:
+				link = ShortLink.objects.get(string__exact=string)
+			except ObjectDoesNotExist:
+				response_status = 200
+				response_text = "That shortlink does not exist."
+			else:
+				response_status = 422
+				response_text = "Shortlink taken!"
+	else:
+		response_status = 400
+		response_text = "Please use a GET request."
+
+	return JsonResponse(response_builder(response_status, response_text), status=response_status)
+
+
 
 def response_builder(status, text):
 	r = {}

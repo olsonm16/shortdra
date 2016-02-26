@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from views import dispatcher, root, creator, see_all, delete, flixdra, make_link
+from views import dispatcher, root, creator, see_all, delete, flixdra, make_link, avail_check
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^create/$', creator),
     url(r'^api/v1/shortdra/add/$', make_link),
     url(r'^api/v1/shortdra/delete/$', delete),
+    url(r'^api/v1/shortdra/avail/$', avail_check),
     url(r'^flixdra/$', flixdra),
     url(r'^(?P<string>[\w\/+-@%_&!]+)/$', dispatcher),
 
