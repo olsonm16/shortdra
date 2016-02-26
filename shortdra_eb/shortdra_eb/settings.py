@@ -29,9 +29,10 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"), '/var/www/static', 
-]
+if 'RDS_DB_NAME' not in os.environ:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static"), '/var/www/static', 
+    ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "..", "static")
 STATIC_URL = '/static/'
