@@ -139,7 +139,9 @@ def avail_check(request):
 	response_text = ""
 
 	if request.method == 'GET':
-		query_dict = QueryDict(request.body)
+		query_dict = request.GET.dict()
+		print(request.GET)
+		print(query_dict)
 		try:
 			string = str(query_dict[u'string'])
 		except:

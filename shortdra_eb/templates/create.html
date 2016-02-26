@@ -62,6 +62,35 @@
 			window.location.href = "http://hydr.as/see_all";
 		});
 
+		$("#string").focus(function() {
+		    console.log('in');
+		}).blur(function() {
+		    console.log('avail check');
+			var text = $("#string")[0].value;
+			console.log(string);
+			if (text.length > 0) {
+				$.ajax({
+	                url : "/api/v1/shortdra/avail/",
+	                type: "GET",
+	                data: {'string': text},
+	                success : function(json) {
+	                    if (json) {
+	                    	console.dir(json);
+
+	                    }
+	                },
+	                 error : function(json, xhr, errmsg, err) {
+	                        $("#result").hide()
+	                    	$("#failure").fadeIn();
+	                    	console.dir(json);
+	                    	var result = JSON.parse(json.responseText);
+	                    	$("#failure").text(result.body.message);
+	                    }
+
+					});
+				}
+			});
+
 		$("#create").click(function() {
 			console.log('create');
 			var text = $("#string")[0].value;
@@ -83,15 +112,17 @@
 	                    		$("#result").text(json.body.message);
 	                    		$("#result").fadeOut(2000);	
 	                    	} else {
-	                    		$("#result").hide()
-	                    		$("#failure").fadeIn();
-	                    		$("#failure").text(json.body.message);
+	                    		
 	                    	}
 
 	                    }
 	                },
-	                error : function(xhr, errmsg, err) {
-	                        console.log(errmsg, err, xhr);
+	                error : function(json, xhr, errmsg, err) {
+	                        $("#result").hide()
+	                    	$("#failure").fadeIn();
+	                    	console.dir(json);
+	                    	var result = JSON.parse(json.responseText);
+	                    	$("#failure").text(result.body.message);
 	                    }
 
 			});
