@@ -30,13 +30,6 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
-if "mitchs-mbp" in socket.gethostname():
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static"), 
-    ]
-else:
-    STATICFILES_DIRS = []
-
 STATIC_ROOT = os.path.join(BASE_DIR, "..", "static")
 STATIC_URL = '/static/'
 
