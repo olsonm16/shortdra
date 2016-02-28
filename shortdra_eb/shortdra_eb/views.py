@@ -75,6 +75,9 @@ def creator(request):
 	c['csrftoken'] = csrf(request)
 	return render(request, "create.html", c)
 
+def headers(request):
+	return HttpResponse(request.META)
+
 @csrf_exempt
 def make_link(request):
 	string = ""
