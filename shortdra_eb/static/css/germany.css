@@ -131,7 +131,7 @@ h3, h5 {
 }
 
 a {
-  color: white; /* blue colors for links too */
+  color:  #99cfff; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
 
@@ -147,7 +147,7 @@ a {
     vertical-align: middle;
     position: relative;
     display: inline-block;
-    color: white;
+    color:  #99cfff;
     margin-left: 10px;
    	line-height: 45px;
     width: fixed;
@@ -157,7 +157,7 @@ a {
     padding: 10px;
     position: relative;
     display: inline-block;
-    color: white;
+    color:  #99cfff;
     margin-left: 10px;
    	line-height: 45px;
     width: fixed;
@@ -207,6 +207,5 @@ tr {
 
 .main p {
   font-size: 30px;
-  font-weight: 100;
   color: rgb(51, 102, 153);
 }
