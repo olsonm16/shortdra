@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^headers/', headers),
     url(r'^$', root),
-    url(r'^germany/timeline/', germany_timeline),
+    url(r'^germany/timeline', germany_timeline),
     url(r'^germany/', germany),
     url(r'^see_all/$', see_all),
     url(r'^create/$', creator),
