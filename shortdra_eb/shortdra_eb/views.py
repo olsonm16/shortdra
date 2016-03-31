@@ -62,6 +62,9 @@ def root(request):
 def germany(request):
 	return render(request, "germany_home.html")
 
+def germany_timeline(request):
+	return render(request, "germany_timeline.html")
+
 def dispatcher(request, string):
 	try:
 		link = ShortLink.objects.get(string__exact=string)
