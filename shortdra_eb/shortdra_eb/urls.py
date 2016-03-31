@@ -17,12 +17,13 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from views import dispatcher, root, creator, see_all, delete, flixdra, make_link, avail_check, headers
+from views import dispatcher, root, creator, see_all, delete, flixdra, make_link, avail_check, headers, germany
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^headers/', headers),
     url(r'^$', root),
+    url(r'^germany/', germany),
     url(r'^see_all/$', see_all),
     url(r'^create/$', creator),
     url(r'^api/v1/shortdra/add/$', make_link),

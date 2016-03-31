@@ -51,10 +51,16 @@ def root(request):
 			return blogger(request)
 		elif "ip" in pieces:
 			return HttpResponse(str(r))
+		elif "refugeesofgermany" in pieces:
+			return germany(request)
 		else:
 			return dispatcher(request, pieces[0])
 	
 	return HttpResponseRedirect("http://hydras.slack.com")
+
+
+def germany(request):
+	return render(request, "germany_home.html")
 
 def dispatcher(request, string):
 	try:

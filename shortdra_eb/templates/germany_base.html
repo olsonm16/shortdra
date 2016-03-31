@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<html>
+<link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <head>
+    <link href="{% static 'css/global.css' %}"
+          rel="stylesheet" media="screen">
+     <link href='https://fonts.googleapis.com/css?family=Lato:400,900,700,300,100' rel='stylesheet' type='text/css'>
+  </head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refugees of Germany | Home</title>
+<header id="siteheader">
+  <div class="header-content" style="cursor:default;">
+    <a style="color: #f0f8ff; text-shadow: none; font-weight:900;">refugees of germany</a>
+  </div>
+     <div tabindex=-1 id="about" class="header-content">
+    <a tabindex=-1 style="font-weight:300;"href="http://mitch.hydr.as/">about</a>
+    </div>
+    <div id="shortdra" tabindex=-1 class="header-content" style="font-weight:bold;">
+    <a tabindex=-1 href="/create">pls</a>
+    </div>
+</header>
+<body id="doc-body" style="margin-top: 30px;">
+
+  <body style="height:90%">
+    {% block content %}
+    {% endblock %}
+
+  </body>
+  <div><footer><div id="footer-text">Matt Carl</div></footer></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script>
+
+  $(document).ready(function()
+  {
+
+      $('#shortdra').click(function() {
+      
+        window.location.href = "/create";
+      
+      });
+
+      $('#about').click(function() {
+      
+        window.location.href = "http://mitch.hydr.as/";
+      
+      });
+
+
+
+  });
+
+  </script>
+</html>
