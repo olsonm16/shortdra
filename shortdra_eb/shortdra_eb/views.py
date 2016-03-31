@@ -51,6 +51,8 @@ def root(request):
 			return blogger(request)
 		elif "ip" in pieces:
 			return HttpResponse(str(r))
+		elif "refugeesofgermany" in pieces:
+			return germany(request)
 		else:
 			return dispatcher(request, pieces[0])
 	
