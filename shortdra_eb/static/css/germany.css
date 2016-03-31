@@ -208,4 +208,5 @@ tr {
 .main p {
   font-size: 30px;
   color: rgb(51, 102, 153);
+  font-weight: 200;
 }
