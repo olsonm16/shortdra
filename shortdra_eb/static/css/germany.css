@@ -116,12 +116,10 @@ a:active {
 
 body {
  	background-image: url("http://i.imgur.com/5Xikt9f.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center top;
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
 	font-family: 'Lato', sans-serif;
 	color: #f0f8ff;
-	font-weight: 400 !important;
 }
 
 #content {
@@ -209,5 +207,6 @@ tr {
 
 .main p {
   font-size: 30px;
+  font-weight: 100;
   color: rgb(51, 102, 153);
 }
