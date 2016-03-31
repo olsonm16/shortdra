@@ -133,7 +133,7 @@ h3, h5 {
 }
 
 a {
-  color: #99cfff; /* blue colors for links too */
+  color: white; /* blue colors for links too */
   text-decoration: inherit; /* no underline */
 }
 
@@ -186,4 +186,28 @@ table, th, td {
 
 tr {
 	style="height: 0;"
+}
+
+.container {
+  margin: 0 auto;
+  width: 960px;
+}
+
+/* Main */
+.main {
+  color: #fff;
+  position: relative;
+  top: 100px;
+  text-align: center;
+}
+
+.main h1 {
+  font-size: 80px;
+  font-weight: 300;
+  margin-bottom: -30px;
+}
+
+.main p {
+  font-size: 30px;
+  color: rgb(51, 102, 153);
 }
