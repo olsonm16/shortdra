@@ -104,8 +104,14 @@
 	                type: "POST",
 	                data: {'string': text, 'link': link},
 	                success : function(json) {
+	                		
 	                    if (json) {
 	                    	console.dir(json)
+	                    		function copyToClipboard(text) {
+			var website = "http://shortdra.hydr.as/" ;
+			window.prompt("Copy to clipboard: Ctrl+C, Enter", website+text);
+							}
+	                   
 	                    	if (json.status_code === "200") {
 	                    		$("#failure").hide();
 	                    		$("#result").fadeIn();
